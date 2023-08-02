@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "633610168605",
+    "project_id": "felicitapp-d424d",
+    "storage_bucket": "felicitapp-d424d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633610168605:android:c83b5e9b1fc01f4212d9f4",
+        "android_client_info": {
+          "package_name": "com.felicitapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633610168605-sj46cb2ls0e9q90jb1fiku0mjjv7fovo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.felicitapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "633610168605-4jncrbj0e7mqjtvoa6tukujursr87pvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy-P3Iyrcklu3CceH8YduKwmfdZ6BTdxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633610168605-4jncrbj0e7mqjtvoa6tukujursr87pvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
