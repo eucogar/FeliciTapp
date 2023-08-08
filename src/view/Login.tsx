@@ -4,13 +4,12 @@ import React from 'react';
 import {InputText} from '../components/InputText';
 import {useForm} from '../hook/HookForm';
 import {LoginUser} from '../model/Login';
-import {AuthContext} from '../context/AuthContext';
-import {useContext} from 'react';
 import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
+import useAuth from '../hook/useAuth';
 
 export const Login = ({navigation}) => {
-  const {signIn} = useContext(AuthContext);
+  const {Google, EmailAndPassword} = useAuth();
   const {form, onChange} = useForm<LoginUser>({} as LoginUser);
   const {email, password} = form;
   console.log(form);
@@ -37,13 +36,14 @@ export const Login = ({navigation}) => {
           />
           <View style={{marginVertical: 20}}>
             <Button
-              onPress={() => signIn(form)}
+              onPress={() => EmailAndPassword(form)}
               mode={'elevated'}
               textColor={'white'}
               buttonColor={'#51A8AF'}>
               Sign In
             </Button>
             <Button
+              onPress={Google}
               style={{marginTop: 5}}
               mode={'elevated'}
               textColor={'white'}

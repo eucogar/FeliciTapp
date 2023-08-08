@@ -1,4 +1,4 @@
-import FireBase from './FireBase';
+import FireBase from './firestoreService';
 import {useState} from 'react';
 import {UserRegister as User} from '../model/UserRegister';
 

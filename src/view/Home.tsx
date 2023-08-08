@@ -19,9 +19,11 @@ import {consejos} from '../database/Consejos';
 import {AuthContext} from '../context/AuthContext';
 import {styles} from '../themes/Home';
 import {StackScreenProps} from '@react-navigation/stack';
+import useAuth from '../hook/useAuth';
 interface Props extends StackScreenProps<any, any> {}
 
 export const Home = ({navigation}: Props) => {
+  const {Out} = useAuth();
   const {form, onChange} = useForm<imagenes>({} as imagenes);
   const {Imagen} = form;
   const {Imagenes} = useContext(AuthContext);
@@ -142,7 +144,9 @@ export const Home = ({navigation}: Props) => {
             </ScrollView>
           </View>
           <View style={styles.hiddenElements}>
-            <Text style={styles.felici}>FeliciTapp</Text>
+            <TouchableOpacity onPress={() => Out()}>
+              <Text style={styles.felici}>FeliciTapp</Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </ViewShot>

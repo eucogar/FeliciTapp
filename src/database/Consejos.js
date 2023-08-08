@@ -56,3 +56,4 @@ export const consejos = [
   '"No temas al fracaso, teme a no intentarlo". - Roy T. Bennett',
   '"Tu mayor competencia eres tú mismo. Supérate a ti mismo cada día y estarás en el camino hacia el éxito". - Anónimo',
 ];
+export const consejosfavorito = [];

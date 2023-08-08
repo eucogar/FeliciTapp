@@ -6,7 +6,7 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 GoogleSignin.configure({
   webClientId:
-    '426388272963-809a7iqjd02qtabq2995npclhr9cvgeu.apps.googleusercontent.com',
+    '633610168605-4jncrbj0e7mqjtvoa6tukujursr87pvm.apps.googleusercontent.com',
 });
 
 type userCredencial = Promise<FirebaseAuthTypes.UserCredential | undefined>;
@@ -25,7 +25,7 @@ export default function () {
     }
   };
 
-  const RegisterEmailAndPassword: ({
+  const sigInEmailAndPassword: ({
     email,
     password,
   }: any) => userCredencial = async ({email, password}: any) => {
@@ -33,12 +33,12 @@ export default function () {
       console.log('sigIn Email And Password');
       return await auth().createUserWithEmailAndPassword(email, password);
     } catch (error: any) {
-      console.log('Error');
+      console.log(error);
       let content = '';
       switch (error.code) {
         case 'auth/email-already-in-use':
           content = 'That email address is already in use!';
-          break;
+          return await auth().signInWithEmailAndPassword(email, password);
         case 'auth/invalid-email':
           content = 'That email address is invalid!';
           break;
@@ -88,7 +88,7 @@ export default function () {
 
   return {
     singInAnonimous,
-    RegisterEmailAndPassword,
+    sigInEmailAndPassword,
     signInGoogle,
     signOut,
     auth,
