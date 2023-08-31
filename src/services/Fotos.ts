@@ -1,25 +1,31 @@
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import RNImageToBase64 from 'react-native-image-base64';
 
 export const Galery = async (image: string[], onChange: Function) => {
   try {
     await launchImageLibrary(
-      {mediaType: 'photo', selectionLimit: 1},
-      async (response: any) => {
-        let imageCopy: string[] = image ? image : [];
+        { mediaType: 'photo', selectionLimit: 1 },
+        async (response: any) => {
+          const selectedImage = response.assets[0]?.uri;
 
-        for (let asset of response.assets) {
-          try {
-            // Store only the image URI instead of converting to base64
-            imageCopy.push(asset.uri);
-          } catch (error) {
-            console.log(error);
+          if (selectedImage) {
+            try {
+              const croppedImage = await ImagePicker.openCropper({
+                path: selectedImage, mediaType: "photo",
+                width: 300,
+                height: 400
+              });
+
+              const base64Image = await RNImageToBase64.getBase64String(croppedImage.path);
+              const imageCopy = [...image, base64Image];
+              console.log(imageCopy);
+              onChange(imageCopy, 'Imagen');
+            } catch (error) {
+              console.log(error);
+            }
           }
-        }
-
-        console.log(imageCopy);
-        onChange(imageCopy, 'Imagen');
-      },
+        },
     );
   } catch (error) {
     console.log(error);
@@ -28,20 +34,25 @@ export const Galery = async (image: string[], onChange: Function) => {
 
 export const Camera = async (image: string[], onChange: Function) => {
   try {
-    await launchCamera({mediaType: 'photo'}, async (response: any) => {
-      let imageCopy: string[] = image ? image : [];
+    await launchCamera({ mediaType: 'photo' }, async (response: any) => {
+      const capturedImage = response.assets[0]?.uri;
 
-      for (let asset of response.assets) {
+      if (capturedImage) {
         try {
-          // Store only the image URI instead of converting to base64
-          imageCopy.push(asset.uri);
+          const croppedImage = await ImagePicker.openCropper({
+            path: capturedImage,
+            width: 300, mediaType: "photo",
+            height: 400
+          });
+
+          const base64Image = await RNImageToBase64.getBase64String(croppedImage.path);
+          const imageCopy = [...image, base64Image];
+          console.log(imageCopy);
+          onChange(imageCopy, 'Imagen');
         } catch (error) {
           console.log(error);
         }
       }
-
-      console.log(imageCopy);
-      onChange(imageCopy, 'Imagen');
     });
   } catch (error) {
     console.log(error);
